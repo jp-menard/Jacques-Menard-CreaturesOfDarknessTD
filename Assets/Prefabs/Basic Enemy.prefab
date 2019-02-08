@@ -130,7 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476bdc6747f955d47aafe17997844f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   animator: {fileID: 1903299972}
   mSpriteRender: {fileID: 3565640917775298713}
 --- !u!114 &1489420895
@@ -146,5 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 100
-  armor: 1
-  damaged: 0
+  armor: 0
+  startSpeed: 2
+  speed: 2
+  bounty: 25
+  livesDamage: 1
+  underFire: 0
