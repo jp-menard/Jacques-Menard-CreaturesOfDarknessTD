@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
+[RequireComponent(typeof(BasicEnemy))]
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 10f;
-
     private Transform target;
     private int waypointIndex = 0;
     public Animator animator;
     public SpriteRenderer mSpriteRender;
-    public int livesDamage = 1;
 
+    private BasicEnemy enemy;
     // Start is called before the first frame update
     void Start()
     {
         target = Waypoints.points[0];
+        enemy = GetComponent<BasicEnemy>();
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
             mSpriteRender.flipX = true;
         }
         //moves towards next waypoint
-        transform.Translate(dir.normalized * speed*Time.deltaTime,Space.World);
+        transform.Translate(dir.normalized * enemy.speed*Time.deltaTime,Space.World);
 
         if(Vector2.Distance(transform.position,target.position) <=.1f)
         {
@@ -56,6 +56,6 @@ public class EnemyMovement : MonoBehaviour
     private void EndPath()
     {
         Destroy(gameObject);
-        PlayerStats.TakeLives(livesDamage);
+        PlayerStats.TakeLives(enemy.livesDamage);
     }
 }

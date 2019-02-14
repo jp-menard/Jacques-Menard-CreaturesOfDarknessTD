@@ -2,18 +2,31 @@
 
 public class Tower : MonoBehaviour
 {
-    [Header("Attributes")]
+    //Cached instance variables
+    private Transform target;
+    private BasicEnemy targetEnemy;
+
+    [Header("General")]
     public float range = 15f;
+
+    [Header("Use Projectiles(defualt)")]
     public float fireRate = 10f;
     public int price = 0;
     private float fireCountdown = 0f;
+
+    [Header("Use Laser")]
+    public bool useLaser = false;
+    public LineRenderer lineRenderer;
+    public int damageOverTime = 20;
+    public float slowAmount = .3f;
+
  
     // Start is called before the first frame update
-    [Header("Unity Variables")]
-    private Transform target;
+    [Header("Unity Variables")] 
     public string enemyTag = "Enemy";
     public GameObject projectilePrefab;
     public Transform firePoint;
+    
 
     //static instances
     BuildManager buildManager;
@@ -45,10 +58,21 @@ public class Tower : MonoBehaviour
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
+            //sets the old target as no longer under fire
+            if (target != null)
+            {
+                targetEnemy.underFire = false;
+            }
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<BasicEnemy>();
         }
         else
         {
+            //sets the last target to leave range as no longer under fire.
+            if (target != null)
+            {
+                targetEnemy.underFire = false;
+            }
             target = null;
         }
     }
@@ -58,19 +82,43 @@ public class Tower : MonoBehaviour
     {
         if (target == null)
         {
+            if (useLaser)
+            {
+                lineRenderer.enabled = false;
+            }
             return;
         }
 
-        if (fireCountdown <= 0f)
+        if (useLaser)
         {
-            Shoot();
-            fireCountdown = 1f / fireRate;
+            Laser();
+            targetEnemy.underFire = true;
         }
 
-        fireCountdown -= Time.deltaTime;
-           
+        else { 
+        
+            if (fireCountdown <= 0f)
+            {
+                Shoot();
+                fireCountdown = 1f / fireRate;
+            }
+
+            fireCountdown -= Time.deltaTime;
+         }
     }
 
+    void Laser()
+    {
+        //handle damage and slow
+        targetEnemy.TakeDamage(damageOverTime*Time.deltaTime);
+        targetEnemy.Slow(slowAmount);
+        
+        //create line effect
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0,transform.position);
+        lineRenderer.SetPosition(1, target.position);
+
+    }
     //creates a bomb object and fires it towards the current target.
     void Shoot()
     {

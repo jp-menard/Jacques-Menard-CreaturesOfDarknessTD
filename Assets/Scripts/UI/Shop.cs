@@ -8,11 +8,15 @@ public class Shop : MonoBehaviour
     {
         buildManager = BuildManager.instance;
     }
-    public void BasicTurretButton()
+    public void BasicTowerButton()
     {
         Debug.Log("Basic Turret Clicked");
     }
-    public void MissleTurretButton()
+    public void MissleTowerButton()
+    {
+        Debug.Log("Basic Turret Clicked");
+    }
+    public void MageTowerButton()
     {
         Debug.Log("Basic Turret Clicked");
     }

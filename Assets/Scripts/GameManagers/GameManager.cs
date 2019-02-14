@@ -2,13 +2,25 @@
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameEnded = false;
+    private static bool GameIsOver;
     // Start is called before the first frame update
-    void Start()
+    public GameObject gameOverUI;
+
+    private void Start()
     {
-        if (gameEnded)
+        GameIsOver = false;
+    }
+
+    void Update()
+    {
+        if (GameIsOver)
         {
             return;
+        }
+        //Debug end game
+        if(Input.GetKeyDown("e"))
+        {
+            EndGame();
         }
         if(PlayerStats.Lives <= 0)
         {
@@ -18,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
-        gameEnded = true;
-        Debug.Log("GAME OVER!");
+        GameIsOver = true;
+        gameOverUI.SetActive(true);
     }
 }
