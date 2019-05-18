@@ -122,7 +122,15 @@ MonoBehaviour:
   range: 3
   fireRate: 1
   price: 150
+  useLaser: 0
+  lineRenderer: {fileID: 0}
+  damageOverTime: 20
+  slowAmount: 0.3
   enemyTag: Enemy
   projectilePrefab: {fileID: 6619354712786069985, guid: c386c9443fd083545b5b6cdee5fef43f,
     type: 3}
   firePoint: {fileID: 2159106498671591008}
+  selectionIndicator: {fileID: 2731107431862838910, guid: 7207aa3d1a52e6747a83d32b52f5532f,
+    type: 3}
+  TowerSelectUI: {fileID: 9151150356957446494, guid: abb5e8ed53b7b2743ab142da8ec4c278,
+    type: 3}

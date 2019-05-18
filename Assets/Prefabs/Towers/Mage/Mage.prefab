@@ -126,9 +126,14 @@ MonoBehaviour:
   useLaser: 1
   lineRenderer: {fileID: 1622430327930826283}
   damageOverTime: 20
+  slowAmount: 0.3
   enemyTag: Enemy
   projectilePrefab: {fileID: 0}
   firePoint: {fileID: 8006497480095780439}
+  selectionIndicator: {fileID: 2731107431862838910, guid: 7207aa3d1a52e6747a83d32b52f5532f,
+    type: 3}
+  TowerSelectUI: {fileID: 9151150356957446494, guid: abb5e8ed53b7b2743ab142da8ec4c278,
+    type: 3}
 --- !u!120 &1622430327930826283
 LineRenderer:
   m_ObjectHideFlags: 0

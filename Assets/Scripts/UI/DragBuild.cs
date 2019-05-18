@@ -21,7 +21,7 @@ public class DragBuild : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private void Start()
     {
         buildManager = BuildManager.instance;
-        buildManager.SetTurretToBuild(turretPrefab);
+        buildManager.SetTowerToBuild(turretPrefab);
         cam = Camera.main;
         Tower towerScript = turretPrefab.GetComponent<Tower>();
         towerPrice = towerScript.price;
@@ -60,7 +60,7 @@ public class DragBuild : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         Tower towerScript = turretPrefab.GetComponent<Tower>();
-        buildManager.BuildTurret(turretPrefab,towerScript.price,ScreenToWorld(eventData.position));
+        buildManager.BuildTower(turretPrefab,towerScript.price,ScreenToWorld(eventData.position));
         Destroy(previewInstance);
         //buildManager.SetBuildable(true);
     }

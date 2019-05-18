@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 539507872}
   - component: {fileID: 269972549}
   m_Layer: 0
-  m_Name: Basic Tower
+  m_Name: BasicTower
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,10 +96,18 @@ MonoBehaviour:
   range: 4
   fireRate: 1.5
   price: 100
+  useLaser: 0
+  lineRenderer: {fileID: 0}
+  damageOverTime: 20
+  slowAmount: 0.3
   enemyTag: Enemy
   projectilePrefab: {fileID: 8390866063505362579, guid: 983a2b427ba035949a4a230360b02672,
     type: 3}
   firePoint: {fileID: 6917492471378673683}
+  selectionIndicator: {fileID: 2731107431862838910, guid: 7207aa3d1a52e6747a83d32b52f5532f,
+    type: 3}
+  TowerSelectUI: {fileID: 9151150356957446494, guid: abb5e8ed53b7b2743ab142da8ec4c278,
+    type: 3}
 --- !u!61 &269972549
 BoxCollider2D:
   m_ObjectHideFlags: 0

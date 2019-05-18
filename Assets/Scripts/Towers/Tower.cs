@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 public class Tower : MonoBehaviour
 {
     //Cached instance variables
@@ -21,7 +20,6 @@ public class Tower : MonoBehaviour
     public float slowAmount = .3f;
 
  
-    // Start is called before the first frame update
     [Header("Unity Variables")] 
     public string enemyTag = "Enemy";
     public GameObject projectilePrefab;
@@ -30,11 +28,14 @@ public class Tower : MonoBehaviour
 
     //static instances
     BuildManager buildManager;
+    TowerSelectManager selectManager;
 
 
+    // Start is called before the first frame update
     void Start()
     {
         buildManager = BuildManager.instance;
+        selectManager = TowerSelectManager.instance;
         InvokeRepeating("UpdateTarget",0f,.05f);
     }
     
@@ -131,6 +132,17 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public void SellTower()
+    {
+        PlayerStats.Gold += price/2;
+        Destroy(gameObject);
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("Tower Selected");
+        selectManager.SelectTower(gameObject, transform.position);
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

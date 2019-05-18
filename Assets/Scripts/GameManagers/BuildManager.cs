@@ -14,15 +14,15 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
     private bool buildable = true;
-    private GameObject turretToBuild;
+    private GameObject towerToBuild;
 
-    public void SetTurretToBuild(GameObject turret)
+    public void SetTowerToBuild(GameObject tower)
     {
-        turretToBuild = turret;
+        towerToBuild = tower;
     }
-    public GameObject GetTurretToBuild()
+    public GameObject GetTowerToBuild()
     {
-        return turretToBuild;
+        return towerToBuild;
     }
     
     public bool IsBuildable()
@@ -42,8 +42,8 @@ public class BuildManager : MonoBehaviour
         buildable = buildState;
     }
 
-    //check for reasons not to build then build turret and subtract price from total gold
-    public void BuildTurret(GameObject turretInstance,int price, Vector2 buildPosition)
+    //check for reasons not to build then build tower and subtract price from total gold
+    public void BuildTower(GameObject towerInstance,int price, Vector2 buildPosition)
     {
 
         if (buildable)
@@ -58,7 +58,7 @@ public class BuildManager : MonoBehaviour
                 Debug.Log("Didn't Build due to lack of gold");
                 return;
             }
-                turretInstance = (GameObject)Instantiate(turretInstance, buildPosition, Quaternion.identity);
+                towerInstance = (GameObject)Instantiate(towerInstance, buildPosition, Quaternion.identity);
             //TODO Display on screen!
             Debug.Log("Tower Built");
         }
