@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 539507872}
   - component: {fileID: 269972549}
   m_Layer: 0
-  m_Name: BasicTower
+  m_Name: BasicTower(Tier 1)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,8 +94,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 4
-  fireRate: 1.5
+  upgradeCost: 25
   price: 100
+  sellPrice: 0
+  fireRate: 1.5
   useLaser: 0
   lineRenderer: {fileID: 0}
   damageOverTime: 20
@@ -104,9 +106,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8390866063505362579, guid: 983a2b427ba035949a4a230360b02672,
     type: 3}
   firePoint: {fileID: 6917492471378673683}
-  selectionIndicator: {fileID: 2731107431862838910, guid: 7207aa3d1a52e6747a83d32b52f5532f,
-    type: 3}
-  TowerSelectUI: {fileID: 9151150356957446494, guid: abb5e8ed53b7b2743ab142da8ec4c278,
+  upgradePrefab: {fileID: 1085639043777027606, guid: 428a213be4e13324daed7b86f82f71d2,
     type: 3}
 --- !u!61 &269972549
 BoxCollider2D:

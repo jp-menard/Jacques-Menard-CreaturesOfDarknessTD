@@ -45,4 +45,10 @@ public class TowerSelectManager : MonoBehaviour
         Tower towerScript = currentlySelected.GetComponent<Tower>();
         towerScript.SellTower();
     }
+
+    public void UpgradeTower()
+    {
+        Tower towerScript = currentlySelected.GetComponent<Tower>();
+        towerScript.UpgradeTower();
+    }
 }

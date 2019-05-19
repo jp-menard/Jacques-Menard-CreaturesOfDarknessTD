@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5528566358403351071
+--- !u!1 &551399851887608006
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8006497480095780439}
-  - component: {fileID: 3700760481628429314}
-  - component: {fileID: 8901863569402782992}
-  - component: {fileID: 8897708124451742980}
-  - component: {fileID: 1622430327930826283}
+  - component: {fileID: 84670013309755435}
+  - component: {fileID: 169921122600599073}
+  - component: {fileID: 4561381592604328542}
+  - component: {fileID: 8600081201552463925}
+  - component: {fileID: 8599599817309355006}
   m_Layer: 0
-  m_Name: Mage
+  m_Name: Mage(Tier 2)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8006497480095780439
+--- !u!4 &84670013309755435
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528566358403351071}
+  m_GameObject: {fileID: 551399851887608006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.71, y: 2.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3700760481628429314
+--- !u!212 &169921122600599073
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528566358403351071}
+  m_GameObject: {fileID: 551399851887608006}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,13 +82,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8901863569402782992
+--- !u!61 &4561381592604328542
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528566358403351071}
+  m_GameObject: {fileID: 551399851887608006}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -108,39 +108,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5798938, y: 0.8671036}
   m_EdgeRadius: 0
---- !u!114 &8897708124451742980
+--- !u!114 &8600081201552463925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528566358403351071}
+  m_GameObject: {fileID: 551399851887608006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c011fdd07de283848b8b78b152734e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 4
-  fireRate: 10
+  range: 4.5
+  upgradeCost: 0
   price: 300
+  sellPrice: 0
+  fireRate: 10
   useLaser: 1
-  lineRenderer: {fileID: 1622430327930826283}
-  damageOverTime: 20
-  slowAmount: 0.3
+  lineRenderer: {fileID: 8599599817309355006}
+  damageOverTime: 25
+  slowAmount: 0.5
   enemyTag: Enemy
   projectilePrefab: {fileID: 0}
-  firePoint: {fileID: 8006497480095780439}
-  selectionIndicator: {fileID: 2731107431862838910, guid: 7207aa3d1a52e6747a83d32b52f5532f,
-    type: 3}
-  TowerSelectUI: {fileID: 9151150356957446494, guid: abb5e8ed53b7b2743ab142da8ec4c278,
-    type: 3}
---- !u!120 &1622430327930826283
+  firePoint: {fileID: 84670013309755435}
+  upgradePrefab: {fileID: 0}
+--- !u!120 &8599599817309355006
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5528566358403351071}
+  m_GameObject: {fileID: 551399851887608006}
   m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0

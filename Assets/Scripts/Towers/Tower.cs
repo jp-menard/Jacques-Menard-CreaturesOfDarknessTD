@@ -7,10 +7,14 @@ public class Tower : MonoBehaviour
 
     [Header("General")]
     public float range = 15f;
+    public int upgradeCost;
+    public int price = 0;
+
+    [HideInInspector]
+    public int sellPrice = 0;
 
     [Header("Use Projectiles(defualt)")]
     public float fireRate = 10f;
-    public int price = 0;
     private float fireCountdown = 0f;
 
     [Header("Use Laser")]
@@ -24,13 +28,18 @@ public class Tower : MonoBehaviour
     public string enemyTag = "Enemy";
     public GameObject projectilePrefab;
     public Transform firePoint;
+    public GameObject upgradePrefab;
+    
     
 
     //static instances
     BuildManager buildManager;
     TowerSelectManager selectManager;
 
-
+    private void Awake()
+    {
+        sellPrice = price / 2;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -134,13 +143,32 @@ public class Tower : MonoBehaviour
 
     public void SellTower()
     {
-        PlayerStats.Gold += price/2;
+        PlayerStats.Gold += sellPrice;
         Destroy(gameObject);
     }
 
+    public void UpgradeTower()
+    {
+        
+        if (PlayerStats.Gold>upgradeCost & upgradePrefab!=null)
+        {
+            Debug.Log("Tower Upgraded");
+            PlayerStats.Gold -= upgradeCost;
+
+            GameObject upgradedTower = (GameObject)Instantiate(upgradePrefab, transform.position, Quaternion.identity);
+            selectManager.currentlySelected = upgradedTower;
+            //Sets the sell price of the newly created upgrade to half the cost of all previous upgrades
+            Tower upgradeScript = upgradedTower.GetComponent<Tower>();
+            upgradeScript.sellPrice = upgradeScript.sellPrice =sellPrice + upgradeCost/2;
+
+            Destroy(gameObject);
+        }
+        else{
+            Debug.Log("Tower Not Upgraded");
+        }
+    }
     private void OnMouseDown()
     {
-        Debug.Log("Tower Selected");
         selectManager.SelectTower(gameObject, transform.position);
     }
     void OnDrawGizmosSelected()
