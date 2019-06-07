@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public Text roundsText;
+    public string MainMenu = "Main Menu";
 
     void OnEnable()
     {
@@ -14,9 +15,10 @@ public class GameOver : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
     public void Menu()
     {
-        //TODO Implement Main Menu Button.
-        Debug.Log("Go to Menu");
+        Debug.Log("Opening main menu...");
+        SceneManager.LoadScene(MainMenu);
     }
 }

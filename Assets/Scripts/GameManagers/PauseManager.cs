@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     public GameObject ui;
+    public string MainMenu = "Main Menu";
 
     void Update()
     {
@@ -35,7 +36,7 @@ public class PauseManager : MonoBehaviour
 
     public void Menu()
     {
-        //TODO implement main menu.
-        Debug.Log("Go to menu.");
+        Debug.Log("Opening main menu...");
+        SceneManager.LoadScene(MainMenu);
     }
 }
