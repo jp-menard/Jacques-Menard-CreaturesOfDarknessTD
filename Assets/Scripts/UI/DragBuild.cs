@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DragBuild : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     BuildManager buildManager;
+    TowerSelectManager selectManager;
 
     public GameObject turretPrefab;
     public GameObject previewPrefab;
@@ -21,6 +22,7 @@ public class DragBuild : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private void Start()
     {
         buildManager = BuildManager.instance;
+        selectManager = TowerSelectManager.instance;
         buildManager.SetTowerToBuild(turretPrefab);
         cam = Camera.main;
         Tower towerScript = turretPrefab.GetComponent<Tower>();
@@ -36,7 +38,7 @@ public class DragBuild : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     //Checks if player can afford tower and shows preview of the tower and range under cursor
     public void OnBeginDrag(PointerEventData eventData)
     {
-
+        selectManager.DeselectTower();
         if (PlayerStats.Gold < towerPrice)
         {
             //TODO Add display message to playerview

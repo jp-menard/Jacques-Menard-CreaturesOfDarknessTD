@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class GameOver : MonoBehaviour
+
+public class VictoryUI : MonoBehaviour
 {
     public Text roundsText;
     public string MainMenu = "Main Menu";
 
     void OnEnable()
     {
-        roundsText.text = PlayerStats.WaveIndex.ToString();
+        roundsText.text = ""+ PlayerStats.WaveIndex;
     }
 
     public void Retry()

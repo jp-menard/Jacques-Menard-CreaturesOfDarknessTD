@@ -17,15 +17,21 @@ public class TowerSelectUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetUpgradeText();
-        SetSellText();
+        if (selectManager.currentlySelected != null) { 
+            SetUpgradeText();
+            SetSellText();
+        }
+        else
+        {
+            Close();
+        }
     }
 
     //closes UI and deselects tower
-    public void Close()
-    {
-        selectManager.DeselectTower();
-        gameObject.SetActive(false);
+    void Close()
+    {   
+            selectManager.DeselectTower();
+            gameObject.SetActive(false);
     }
 
     public void SellTower()
@@ -39,7 +45,7 @@ public class TowerSelectUI : MonoBehaviour
         selectManager.UpgradeTower();
     }
 
-    private void SetUpgradeText()
+    void SetUpgradeText()
     {
         Tower towerScript = selectManager.currentlySelected.GetComponent<Tower>();
         if (towerScript.upgradeCost != 0)

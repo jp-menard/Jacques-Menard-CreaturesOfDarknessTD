@@ -35,8 +35,12 @@ public class TowerSelectManager : MonoBehaviour
     //Called when the tower is unselected
     public void DeselectTower()
     {
-        Indicator.SetActive(false);
-        currentlySelected = null;
+        if (currentlySelected != null)
+        {
+            Indicator.SetActive(false);
+            currentlySelected = null;
+        }
+
     }
 
     //Sells currently selected tower

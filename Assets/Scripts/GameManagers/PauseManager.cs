@@ -31,6 +31,7 @@ public class PauseManager : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1f;
+        PlayerStats.WaveIndex = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
