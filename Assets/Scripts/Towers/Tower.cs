@@ -29,6 +29,7 @@ public class Tower : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     public GameObject upgradePrefab;
+    public string targetMethod;
     
     
 
@@ -38,6 +39,7 @@ public class Tower : MonoBehaviour
 
     private void Awake()
     {
+        targetMethod = "TargetFirst";
         sellPrice = price / 2;
     }
     // Start is called before the first frame update
@@ -45,51 +47,12 @@ public class Tower : MonoBehaviour
     {
         buildManager = BuildManager.instance;
         selectManager = TowerSelectManager.instance;
-        InvokeRepeating("UpdateTarget",0f,.05f);
-    }
-    
-    //Finds the closest enemy in range and sets target
-    void UpdateTarget()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
-
-        foreach(GameObject enemy in enemies)
-        {
-            float distanceToEnemy = Vector2.Distance(transform.position,enemy.transform.position);
-
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
-        }
-
-        if (nearestEnemy != null && shortestDistance <= range)
-        {
-            //sets the old target as no longer under fire
-            if (target != null)
-            {
-                targetEnemy.underFire = false;
-            }
-            target = nearestEnemy.transform;
-            targetEnemy = nearestEnemy.GetComponent<BasicEnemy>();
-        }
-        else
-        {
-            //sets the last target to leave range as no longer under fire.
-            if (target != null)
-            {
-                targetEnemy.underFire = false;
-            }
-            target = null;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        TargetEnemy(targetMethod);
         if (target == null)
         {
             if (useLaser)
@@ -167,6 +130,157 @@ public class Tower : MonoBehaviour
             Debug.Log("Tower Not Upgraded");
         }
     }
+    //Determines what targeting method is being used and calls the appropraite method.
+    void TargetEnemy(string targetCase)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+
+        switch (targetCase)
+        {
+            //Targets closest enemy in range
+            case "TargetClosest":
+                foreach (GameObject enemy in enemies)
+                {
+                    float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+
+                    if (distanceToEnemy < shortestDistance)
+                    {
+                        shortestDistance = distanceToEnemy;
+                        nearestEnemy = enemy;
+                    }
+                }
+
+                if (nearestEnemy != null && shortestDistance <= range)
+                {
+                    //sets the old target as no longer under fire
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = nearestEnemy.transform;
+                    targetEnemy = nearestEnemy.GetComponent<BasicEnemy>();
+                }
+                else
+                {
+                    //sets the last target to leave range as no longer under fire.
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = null;
+                }
+                break;
+            //Targets the enemy with the most health in range
+            case "TargetStrong":
+                float mostHealth = 0f;
+                GameObject strongestEnemy = null;
+                foreach (GameObject enemy in enemies)
+                {
+                    float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+                    BasicEnemy enemyScript = enemy.GetComponent<BasicEnemy>();
+                    if (distanceToEnemy <= range && enemyScript.currentHealth > mostHealth)
+                    {
+                        Debug.Log("Reached");
+                        mostHealth = enemyScript.currentHealth;
+                        strongestEnemy = enemy;
+                    }
+                }
+                if (strongestEnemy != null)
+                {
+
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = strongestEnemy.transform;
+                    targetEnemy = strongestEnemy.GetComponent<BasicEnemy>();
+
+                }
+                else
+                {
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = null;
+                }
+                break;
+            //Targets Last enemy in range
+            case "TargetLast":
+                float leastTraveled = Mathf.Infinity;
+                GameObject lastEnemy = null;
+                foreach (GameObject enemy in enemies)
+                {
+                    float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+                    EnemyMovement mvmtScrpt = enemy.GetComponent<EnemyMovement>();
+                    if (distanceToEnemy <= range && mvmtScrpt.distanceTraveled < leastTraveled)
+                    {
+                        Debug.Log("Reached");
+                        leastTraveled = mvmtScrpt.distanceTraveled;
+                        lastEnemy = enemy;
+                    }
+                }
+                if (lastEnemy != null)
+                {
+
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = lastEnemy.transform;
+                    targetEnemy = lastEnemy.GetComponent<BasicEnemy>();
+
+                }
+                else
+                {
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = null;
+                }
+                break;
+            //Targets First enemy in range
+            default:
+                float mostTraveled=0f;
+                GameObject firstEnemy=null;
+                foreach (GameObject enemy in enemies)
+                {
+                    float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+                    EnemyMovement mvmtScrpt = enemy.GetComponent<EnemyMovement>();
+                    if (distanceToEnemy <= range && mvmtScrpt.distanceTraveled > mostTraveled)
+                    {
+                        Debug.Log("Reached");                     
+                        mostTraveled = mvmtScrpt.distanceTraveled;
+                        firstEnemy = enemy;
+                    }
+                }
+                if (firstEnemy != null)
+                {
+
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = firstEnemy.transform;
+                    targetEnemy = firstEnemy.GetComponent<BasicEnemy>();
+
+                }
+                else
+                {
+                    if (target != null)
+                    {
+                        targetEnemy.underFire = false;
+                    }
+                    target = null;
+                }
+                break;
+        }
+        
+    }
+
     private void OnMouseDown()
     {
         selectManager.SelectTower(gameObject, transform.position);

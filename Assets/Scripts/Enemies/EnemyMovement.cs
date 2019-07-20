@@ -8,12 +8,17 @@ public class EnemyMovement : MonoBehaviour
     public Animator animator;
     public SpriteRenderer mSpriteRender;
 
+    //[HideInInspector]
+    public float distanceTraveled = 0f;
+    private Vector2 lastPosition;
+
     private BasicEnemy enemy;
     // Start is called before the first frame update
     void Start()
     {
         target = Waypoints.points[0];
         enemy = GetComponent<BasicEnemy>();
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -31,13 +36,16 @@ public class EnemyMovement : MonoBehaviour
         if(dir.x > .5)
         {
             mSpriteRender.flipX = true;
-        }
+        }        
+        //records the distance traveled since the last frame
+        distanceTraveled += Vector2.Distance(transform.position, lastPosition);
+        lastPosition = transform.position;
         //moves towards next waypoint
         transform.Translate(dir.normalized * enemy.speed*Time.deltaTime,Space.World);
 
         if(Vector2.Distance(transform.position,target.position) <=.1f)
         {
-            GetNextWaypoint();
+            GetNextWaypoint();   
         }
     }
 

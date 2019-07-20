@@ -3,13 +3,13 @@
 public class BasicEnemy : MonoBehaviour
 {
     public float totalHealth=100f;
-    private float currentHealth;
+    
     public int armor = 0;
     
     public float startSpeed = 2f;
     [HideInInspector]
     public float speed;
-
+    public float currentHealth;
     public int bounty = 25;
     public int livesDamage = 1;
 
