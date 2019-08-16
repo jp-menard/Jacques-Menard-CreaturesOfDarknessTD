@@ -37,6 +37,8 @@ public class PauseManager : MonoBehaviour
 
     public void Menu()
     {
+        Time.timeScale = 1f;
+        SaveManagerV1.SaveScene();
         Debug.Log("Opening main menu...");
         SceneManager.LoadScene(MainMenu);
     }

@@ -252,7 +252,6 @@ public class Tower : MonoBehaviour
                     EnemyMovement mvmtScrpt = enemy.GetComponent<EnemyMovement>();
                     if (distanceToEnemy <= range && mvmtScrpt.distanceTraveled > mostTraveled)
                     {
-                        Debug.Log("Reached");                     
                         mostTraveled = mvmtScrpt.distanceTraveled;
                         firstEnemy = enemy;
                     }

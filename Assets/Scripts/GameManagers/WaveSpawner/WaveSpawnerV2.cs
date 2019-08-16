@@ -21,6 +21,7 @@ public class WaveSpawnerV2 : MonoBehaviour
             Wave waveScript = waves[PlayerStats.WaveIndex].GetComponent<Wave>();
             waveScript.SpawnWave(spawnPoint);
             PlayerStats.WaveIndex++;
+            SaveManagerV1.SaveScene();
         }
         else
         {
