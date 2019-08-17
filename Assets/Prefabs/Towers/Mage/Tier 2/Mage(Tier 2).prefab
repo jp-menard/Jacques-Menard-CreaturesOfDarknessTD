@@ -124,6 +124,7 @@ MonoBehaviour:
   upgradeCost: 0
   price: 300
   sellPrice: 0
+  targetMethod: 
   fireRate: 10
   useLaser: 1
   lineRenderer: {fileID: 8599599817309355006}
@@ -131,6 +132,7 @@ MonoBehaviour:
   slowAmount: 0.5
   enemyTag: Enemy
   projectilePrefab: {fileID: 0}
+  towerID: Mage(Tier2)
   firePoint: {fileID: 84670013309755435}
   upgradePrefab: {fileID: 0}
 --- !u!120 &8599599817309355006

@@ -10,9 +10,9 @@ public class PlayerData
     public int gold;
     public int lives;
     public int currentWave;
-    public PlayerData() {
+    public PlayerData(int wave) {
         gold=PlayerStats.Gold;
         lives=PlayerStats.Lives;
-        currentWave=PlayerStats.WaveIndex;
+        currentWave=wave;
     }
 }

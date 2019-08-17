@@ -7,7 +7,34 @@ public class WaveSpawnerV2 : MonoBehaviour
     public Transform spawnPoint;
     public GameObject VictoryUI;
     public GameObject[] waves;
-    
+
+    [HideInInspector]
+    static bool roundComplete = false;
+
+    public void Update()
+    {
+        if (roundComplete == false){
+
+            if (waves.Length > PlayerStats.WaveIndex)
+            {
+                Wave waveScript = waves[PlayerStats.WaveIndex].GetComponent<Wave>();
+                if ((!waveScript.spawnWaveIsRunning) && (GameObject.FindWithTag("Enemy") == null))
+                {
+                    SaveManagerV1.SaveScene(PlayerStats.WaveIndex);
+                    roundComplete = true;
+                }
+
+            }
+            else
+            {
+                if (GameObject.FindWithTag("Enemy") == null)
+                {
+                    VictoryUI.SetActive(true);
+                }
+            }
+        }
+        
+    }
 
     //Calls a subroutine to spawn waves in order
     public void SpawnNextWave()
@@ -21,12 +48,13 @@ public class WaveSpawnerV2 : MonoBehaviour
             Wave waveScript = waves[PlayerStats.WaveIndex].GetComponent<Wave>();
             waveScript.SpawnWave(spawnPoint);
             PlayerStats.WaveIndex++;
-            SaveManagerV1.SaveScene();
+            roundComplete = false;
         }
-        else
+        /*else
         {
             VictoryUI.SetActive(true);
         }
+        */
     }
 
 }

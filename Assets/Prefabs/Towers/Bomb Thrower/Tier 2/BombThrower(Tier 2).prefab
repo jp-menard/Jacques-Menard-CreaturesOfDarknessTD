@@ -121,8 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3.2
   upgradeCost: 0
-  fireRate: 1.2
   price: 150
+  sellPrice: 0
+  targetMethod: 
+  fireRate: 1.2
   useLaser: 0
   lineRenderer: {fileID: 0}
   damageOverTime: 20
@@ -130,5 +132,6 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 6619354712786069985, guid: c386c9443fd083545b5b6cdee5fef43f,
     type: 3}
+  towerID: BombThrower(Tier2)
   firePoint: {fileID: 3169182680273312930}
   upgradePrefab: {fileID: 0}

@@ -13,7 +13,8 @@ public class Wave : MonoBehaviour
 
     public EnemySpawn[] EnemysToSpawn;
 
-    private bool spawnWaveIsRunning = false;
+    [HideInInspector]
+    public bool spawnWaveIsRunning = false;
 
     public void SpawnWave(Transform spawnPoint)
     {

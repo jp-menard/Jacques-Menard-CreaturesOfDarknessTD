@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
 
     [HideInInspector]
     public int sellPrice = 0;
+    public string targetMethod;
 
     [Header("Use Projectiles(defualt)")]
     public float fireRate = 10f;
@@ -27,11 +28,9 @@ public class Tower : MonoBehaviour
     [Header("Unity Variables")] 
     public string enemyTag = "Enemy";
     public GameObject projectilePrefab;
+    public string towerID;
     public Transform firePoint;
     public GameObject upgradePrefab;
-    public string targetMethod;
-    
-    
 
     //static instances
     BuildManager buildManager;

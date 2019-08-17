@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public static class SaveManagerV1
 {
     
-    public static void SaveScene()
+    public static void SaveScene(int wave)
     {
         string currentScene =SceneManager.GetActiveScene().name;
         Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "" + currentScene));
@@ -14,7 +14,7 @@ public static class SaveManagerV1
         string path = Path.Combine(Application.persistentDataPath, ""+ currentScene,"scene.sv");
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData();
+        PlayerData data = new PlayerData(wave);
 
         formatter.Serialize(stream, data);
         stream.Close();

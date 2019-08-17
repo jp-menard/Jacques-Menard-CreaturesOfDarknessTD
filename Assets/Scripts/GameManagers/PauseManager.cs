@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
@@ -31,14 +32,19 @@ public class PauseManager : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1f;
-        PlayerStats.WaveIndex = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        string path = Path.Combine(Application.persistentDataPath, "" + SceneManager.GetActiveScene().name, "scene.sv");
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log("New Game Started");
+        }
     }
 
     public void Menu()
     {
         Time.timeScale = 1f;
-        SaveManagerV1.SaveScene();
+        SaveManagerV1.SaveScene(PlayerStats.WaveIndex);
         Debug.Log("Opening main menu...");
         SceneManager.LoadScene(MainMenu);
     }

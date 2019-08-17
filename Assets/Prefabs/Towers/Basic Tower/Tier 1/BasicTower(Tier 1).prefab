@@ -97,6 +97,7 @@ MonoBehaviour:
   upgradeCost: 25
   price: 100
   sellPrice: 0
+  targetMethod: 
   fireRate: 1.5
   useLaser: 0
   lineRenderer: {fileID: 0}
@@ -105,6 +106,7 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 8390866063505362579, guid: 983a2b427ba035949a4a230360b02672,
     type: 3}
+  towerID: BasicTower(Tier1)
   firePoint: {fileID: 6917492471378673683}
   upgradePrefab: {fileID: 1085639043777027606, guid: 428a213be4e13324daed7b86f82f71d2,
     type: 3}
