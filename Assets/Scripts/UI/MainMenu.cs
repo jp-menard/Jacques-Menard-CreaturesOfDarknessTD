@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
             File.Delete(path);
             Debug.Log("New Game Started");
         }
+        DirectoryInfo di2 = new DirectoryInfo(Path.Combine(Application.persistentDataPath, "" + levelToLoad, "towerData"));
+        foreach (FileInfo file in di2.GetFiles())
+        {
+            file.Delete();
+        }
     }
     public void Continue()
     {

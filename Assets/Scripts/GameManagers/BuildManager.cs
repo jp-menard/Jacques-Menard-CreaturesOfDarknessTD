@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
+    public GameObject[] towerPrefabs;
 
     private void Awake()
     {
@@ -12,6 +17,26 @@ public class BuildManager : MonoBehaviour
             return;
         }
         instance = this;
+    }
+    private void Start()
+    {
+        //load towers for the level
+        string currentScene = SceneManager.GetActiveScene().name;
+        Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "" + currentScene));
+        DirectoryInfo di1 = new DirectoryInfo(Path.Combine(Application.persistentDataPath,currentScene, "towerData"));
+
+        foreach(FileInfo file in di1.GetFiles()) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = file.FullName;
+            FileStream stream = new FileStream(path, FileMode.Open);
+            TowerData data = formatter.Deserialize(stream) as TowerData;
+            stream.Close();
+            for(int i = 0; i < data.positions.GetLength(0); i++)
+            {
+                Vector2 vector = new Vector2(data.positions[i,0],data.positions[i,1]);
+                BuildByID(data.towerID, vector);
+            }
+        }
     }
     private bool buildable = true;
     private GameObject towerToBuild;
@@ -67,5 +92,20 @@ public class BuildManager : MonoBehaviour
             Debug.Log("Can't Build Here!");
             return;
         }
+    }
+
+    public GameObject BuildByID(string towerID, Vector2 buildPosition)
+    {
+        GameObject towerInstance=null;
+        foreach (var towerPrefab in towerPrefabs)
+        {
+            Tower towerScript = towerPrefab.GetComponent<Tower>();
+            if (towerScript.towerID.Equals(towerID))
+            {
+                towerInstance = (GameObject)Instantiate(towerPrefab, buildPosition, Quaternion.identity);
+                return towerInstance;
+            }
+        }
+        return towerInstance;
     }
 }

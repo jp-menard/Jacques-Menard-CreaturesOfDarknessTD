@@ -745,6 +745,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c17182bad666104fab5efc7b348abe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerPrefabs:
+  - {fileID: 6917492471378673686, guid: d0eec889e93f06f49850d31fa964be9e, type: 3}
+  - {fileID: 1085639043777027606, guid: 428a213be4e13324daed7b86f82f71d2, type: 3}
+  - {fileID: 2159106498671591010, guid: b5bbd844ab9850c4698d8419eff097bf, type: 3}
+  - {fileID: 6828945207632928603, guid: 050b21b209e7cff4cab915870e6af2e4, type: 3}
+  - {fileID: 5528566358403351071, guid: 11fed1d2e0b79b844a32ab4f9eaa2b14, type: 3}
+  - {fileID: 551399851887608006, guid: eca2bc04e95b35a46a1bf54fb54d555b, type: 3}
 --- !u!114 &173322383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7144,6 +7151,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 306241399484861116, guid: 7b2c43650edc50f47b0dc599c6554ae7,
       type: 3}
     Delay: 0
+  spawnWaveIsRunning: 0
 --- !u!4 &1005820608
 Transform:
   m_ObjectHideFlags: 0
@@ -7874,6 +7882,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 3565640917775298712, guid: 1ff95bbc25fcf6b4889558ee30f0c6ec,
       type: 3}
     Delay: 0
+  spawnWaveIsRunning: 0
 --- !u!1 &1346986876
 GameObject:
   m_ObjectHideFlags: 0
@@ -8923,6 +8932,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 3565640917775298712, guid: 1ff95bbc25fcf6b4889558ee30f0c6ec,
       type: 3}
     Delay: 0
+  spawnWaveIsRunning: 0
 --- !u!1 &1526516273
 GameObject:
   m_ObjectHideFlags: 0
@@ -10170,6 +10180,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 306241399484861116, guid: 7b2c43650edc50f47b0dc599c6554ae7,
       type: 3}
     Delay: 0
+  spawnWaveIsRunning: 0
 --- !u!1 &2015292389
 GameObject:
   m_ObjectHideFlags: 0
@@ -10235,6 +10246,7 @@ MonoBehaviour:
   - EnemyPrefab: {fileID: 306241399484861116, guid: 7b2c43650edc50f47b0dc599c6554ae7,
       type: 3}
     Delay: 0
+  spawnWaveIsRunning: 0
 --- !u!1001 &2084335096
 PrefabInstance:
   m_ObjectHideFlags: 0
