@@ -1,4 +1,4 @@
-Project Goals  
+Prototype Tower Defense Game
 
 -Creating a simple 2D mobile tower defense game with a theme of vampire hunters vs vampires.  
 
